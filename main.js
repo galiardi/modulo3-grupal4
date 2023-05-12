@@ -55,7 +55,7 @@ function getAge(obj) {
   }
   document.write(edadAno, '\n', edadMes, '\n', edadDias, '   ');
 }
-
+// Jonathan 
 function totalDays(obj) {
   const fechaNacim = obj.getTime();
   const fechaHoy = new Date().getTime();
