@@ -77,12 +77,15 @@ function absMonth(obj){
 // parte a - seccion 4
 function totalDays(obj) {
   const fechaNacim = obj.getTime();
+  // console.log("Fecha de nacimiento:", fechaNacim);
   const fechaHoy = new Date().getTime();
-
+  // console.log("Fecha de hoy:", fechaHoy);
   let valor = fechaHoy - fechaNacim;
-  console.log(valor / (1000 * 60 * 60 * 24));
-  return valor / (1000 * 60 * 60 * 24);
+  valor = parseInt(valor / (1000*60*60*24));
+  // console.log("Días desde el naciemiento:", valor);
+  return valor;
 }
+// fin Jonathan
 
 // parte a - seccion 5
 function getRemainingDaysForBirthday(dateObj) {
