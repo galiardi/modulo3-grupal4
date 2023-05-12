@@ -3,16 +3,19 @@ const birthdate = prompt('Ingrese Fecha de nacimiento (Ej: 19-04-2023)');
 global(birthdate);
 
 function global(date) {
-  console.log(date);
-  const formattedDate = date.split('-').reverse().join('-');
-  console.log(formattedDate);
-  const dateObj = new Date(formattedDate);
+  console.log(date.split('-'));
+  const [dia, mes, ano] = date.split('-');
+  const dateObj = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
   console.log(dateObj);
+
   const dayOfBirthdate = getDayOfBirthdate(dateObj);
+
   getAge(dateObj);
+
   totalDays(dateObj);
+
   const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
-  console.log(remainingDaysForBirthday);
+  console.log(remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños')
 }
 
 //Jonathan
@@ -69,7 +72,7 @@ function getRemainingDaysForBirthday(dateObj) {
     month: now.getMonth(),
     date: now.getDate(),
     year: now.getFullYear(),
-    miliseconds: Date.now(),
+    miliseconds: Date.parse(now),
   };
 
   const birthday = {
@@ -85,6 +88,9 @@ function getRemainingDaysForBirthday(dateObj) {
     miliseconds: undefined,
   };
 
+  const birthdayIsToday = birthday.month === today.month && birthday.date === today.date;
+  if (birthdayIsToday) return 0;
+
   const birthdayIsOver =
     remaining.month < 0 || (remaining.month === 0 && remaining.date < 0);
 
@@ -93,9 +99,11 @@ function getRemainingDaysForBirthday(dateObj) {
   } else {
     birthday.year = today.year;
   }
-  const formattedBirthday = `${birthday.year}-${birthday.month + 1}-${
-    birthday.date
-  }`;
+
+  const formattedBirthday = `${birthday.year}-${birthday.month + 1}-${birthday.date
+    }`;
+
+  console.log(formattedBirthday);
 
   birthday.miliseconds = Date.parse(formattedBirthday);
 
@@ -103,7 +111,7 @@ function getRemainingDaysForBirthday(dateObj) {
 
   remaining.miliseconds = birthday.miliseconds - today.miliseconds;
 
-  const remainigDaysForBirthday = Math.floor(
+  const remainigDaysForBirthday = Math.ceil(
     remaining.miliseconds / (24 * 60 * 60 * 1000)
   );
 
