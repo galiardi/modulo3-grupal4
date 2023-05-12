@@ -3,20 +3,15 @@ const birthdate = prompt('Ingrese Fecha de nacimiento (Ej: 19-04-2023)');
 global(birthdate);
 
 function global(date) {
-  console.log(date.split('-'));
   const [dia, mes, ano] = date.split('-');
   const dateObj = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
-  console.log(dateObj);
 
-  const dayOfBirthdate = getDayOfBirthdate(dateObj);
-
-  getAge(dateObj);
-
-  totalDays(dateObj);
-
-
-  const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
-  console.log(remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños')
+console.log ("seccion 1:", getDayOfBirthdate(dateObj));
+console.log ("seccion 2:", getAge(dateObj));
+console.log ("seccion 3:", absMonth(dateObj));
+console.log ("seccion 4:", totalDays(dateObj));
+console.log ("seccion 5:", getRemainingDaysForBirthday(dateObj));
+console.log ("seccion 6:", timeNow());
 }
 
 //parte a - primera seccion
@@ -60,18 +55,20 @@ function getAge(obj) {
 
 //parte a - seccion 3
 function absMonth(obj){
+  const {edadAno} = getAge(obj);
   const month = obj.getMonth();
   const today = new Date();
   const todayMonth = today.getMonth();
   let mesAbs=0;
    if(edadAno>=0 && month>=todayMonth){
-      mesAbs= edadAno(12)-(month-todayMonth);
+      mesAbs= edadAno*12 - (month-todayMonth);
       return(mesAbs)
     }
     if(edadAno>0 && month<todayMonth){
-      mesAbs= edadAno(12)+(todayMonth-month);
+      mesAbs= edadAno*12 + (todayMonth-month);
       return(mesAbs)
     }
+    // if si es algo que no se
 }
 
 // parte a - seccion 4
@@ -85,7 +82,6 @@ function totalDays(obj) {
   // console.log("Días desde el naciemiento:", valor);
   return valor;
 }
-// fin Jonathan
 
 // parte a - seccion 5
 function getRemainingDaysForBirthday(dateObj) {
@@ -126,11 +122,11 @@ function getRemainingDaysForBirthday(dateObj) {
   const formattedBirthday = `${birthday.year}-${birthday.month + 1}-${birthday.date
     }`;
 
-  console.log(formattedBirthday);
+  // console.log(formattedBirthday);
 
   birthday.miliseconds = Date.parse(formattedBirthday);
 
-  console.log(birthday);
+  // console.log(birthday);
 
   remaining.miliseconds = birthday.miliseconds - today.miliseconds;
 
@@ -149,3 +145,8 @@ function timeNow(){
   const segundos = now.getSeconds();
   return {horas, minutos, segundos}
 }
+
+// al interior de global
+  // const dayOfBirthdate = getDayOfBirthdate(dateObj);
+  // const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
+  // console.log(remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños')
