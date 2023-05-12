@@ -14,11 +14,12 @@ function global(date) {
 
   totalDays(dateObj);
 
+
   const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
   console.log(remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños')
 }
 
-//Jonathan
+//parte a - primera seccion
 function getDayOfBirthdate(obj) {
   const daysOfWeek = [
     'Domingo',
@@ -33,6 +34,7 @@ function getDayOfBirthdate(obj) {
   return daysOfWeek[valor];
 }
 
+// parte a - segunda seccion
 function getAge(obj) {
   const year = obj.getFullYear();
   const month = obj.getMonth();
@@ -53,9 +55,26 @@ function getAge(obj) {
     edadMes = todayMonth + 1;
     edadDias = date;
   }
-  document.write(edadAno, '\n', edadMes, '\n', edadDias, '   ');
+  return {edadAno, edadMes, edadDias}
 }
 
+//parte a - seccion 3
+function absMonth(obj){
+  const month = obj.getMonth();
+  const today = new Date();
+  const todayMonth = today.getMonth();
+  let mesAbs=0;
+   if(edadAno>=0 && month>=todayMonth){
+      mesAbs= edadAno(12)-(month-todayMonth);
+      return(mesAbs)
+    }
+    if(edadAno>0 && month<todayMonth){
+      mesAbs= edadAno(12)+(todayMonth-month);
+      return(mesAbs)
+    }
+}
+
+// parte a - seccion 4
 function totalDays(obj) {
   const fechaNacim = obj.getTime();
   const fechaHoy = new Date().getTime();
@@ -65,6 +84,7 @@ function totalDays(obj) {
   return valor / (1000 * 60 * 60 * 24);
 }
 
+// parte a - seccion 5
 function getRemainingDaysForBirthday(dateObj) {
   const now = new Date();
 
@@ -116,4 +136,13 @@ function getRemainingDaysForBirthday(dateObj) {
   );
 
   return remainigDaysForBirthday;
+}
+
+// parta a - seccion 6
+function timeNow(){
+  const now = new Date();
+  const horas = now.getHours();
+  const minutos = now.getMinutes();
+  const segundos = now.getSeconds();
+  return {horas, minutos, segundos}
 }
