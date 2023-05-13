@@ -8,7 +8,7 @@ function global(date) {
 
   // console.log ("seccion 1:", getDayOfBirthdate(dateObj));
   // console.log ("seccion 2:", getAge(dateObj));
-  // console.log ("seccion 3:", absMonth(dateObj));
+  // console.log ("seccion 3:", getAbsMonths(dateObj));
   // console.log ("seccion 4:", totalDays(dateObj));
   // console.log ("seccion 5:", getRemainingDaysForBirthday(dateObj));
   // console.log ("seccion 6:", timeNow());
@@ -17,7 +17,7 @@ function global(date) {
   Su edad es: ${getAge(dateObj).edadAno} años y ${
     getAge(dateObj).edadMes
   } meses y ${getAge(dateObj).edadDias} días.<br/>
-  La cantidad de meses que tiene son: ${absMonth(dateObj)} meses. <br/>
+  La cantidad de meses que tiene son: ${getAbsMonths(dateObj)} meses. <br/>
   La cantidad de días que tiene son: ${totalDays(dateObj)} días. <br/>
   ${
     remainingDaysForBirthday
@@ -88,21 +88,9 @@ function getAge(obj) {
 }
 
 //parte a - seccion 3
-function absMonth(obj) {
-  const { edadAno } = getAge(obj);
-  const month = obj.getMonth();
-  const today = new Date();
-  const todayMonth = today.getMonth();
-  let mesAbs = 0;
-  if (edadAno >= 0 && month >= todayMonth) {
-    mesAbs = edadAno * 12 - (month - todayMonth);
-    return mesAbs;
-  }
-  if (edadAno > 0 && month < todayMonth) {
-    mesAbs = edadAno * 12 + (todayMonth - month);
-    return mesAbs;
-  }
-  // if si es algo que no se
+function getAbsMonths(obj) {
+  const { edadAno, edadMes } = getAge(obj);
+  return edadAno * 12 + edadMes;
 }
 
 // parte a - seccion 4
