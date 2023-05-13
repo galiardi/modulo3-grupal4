@@ -6,12 +6,19 @@ function global(date) {
   const [dia, mes, ano] = date.split('-');
   const dateObj = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
 
-console.log ("seccion 1:", getDayOfBirthdate(dateObj));
-console.log ("seccion 2:", getAge(dateObj));
-console.log ("seccion 3:", absMonth(dateObj));
-console.log ("seccion 4:", totalDays(dateObj));
-console.log ("seccion 5:", getRemainingDaysForBirthday(dateObj));
-console.log ("seccion 6:", timeNow());
+// console.log ("seccion 1:", getDayOfBirthdate(dateObj));
+// console.log ("seccion 2:", getAge(dateObj));
+// console.log ("seccion 3:", absMonth(dateObj));
+// console.log ("seccion 4:", totalDays(dateObj));
+// console.log ("seccion 5:", getRemainingDaysForBirthday(dateObj));
+// console.log ("seccion 6:", timeNow());
+const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
+// document.write(`El día en que nació fue ${getDayOfBirthdate(dateObj)}. <br/>
+// Su edad es: ${getAge(dateObj).edadAno} años y ${getAge(dateObj).edadMes} meses y ${getAge(dateObj).edadDias} días.<br/>
+// La cantidad de meses que tiene son: ${absMonth(dateObj)} meses. <br/>
+// La cantidad de días que tiene son: ${totalDays(dateObj)} días. <br/>
+// ${remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños.'} <br/>
+// La hora en que ha realizado su consulta es: ${timeNow().horas} : ${timeNow().minutos} : ${timeNow().segundos}.`)
 }
 
 //parte a - primera seccion
@@ -46,9 +53,13 @@ function getAge(obj) {
   let edadDias = todayDate - date;
 
   if (edadMes < 0) {
-    edadAno -= 1;
+    // edadAno -= 1;
+    edadAno = edadAno -1;
     edadMes = todayMonth + 1;
     edadDias = date;
+  }
+  if (edadDias < 0){
+    edadDias = edadDias + 365;
   }
   return {edadAno, edadMes, edadDias}
 }
@@ -145,8 +156,3 @@ function timeNow(){
   const segundos = now.getSeconds();
   return {horas, minutos, segundos}
 }
-
-// al interior de global
-  // const dayOfBirthdate = getDayOfBirthdate(dateObj);
-  // const remainingDaysForBirthday = getRemainingDaysForBirthday(dateObj);
-  // console.log(remainingDaysForBirthday ? `Faltan ${remainingDaysForBirthday} días para su cumpleaños.` : 'Felicidades está de cumpleaños')
