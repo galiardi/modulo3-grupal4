@@ -5,9 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grupal 4</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <script src="./seccionA.js"></script>
-    <script src="./seccionB.js"></script>
+    <form id="entryExitForm">
+      <input
+        id="entryTimeInput"
+        type="text"
+        placeholder="hora de ingreso (ejemplo: 15:15)"
+      />
+      <input
+        id="entryDateInput"
+        type="text"
+        placeholder="fecha de ingreso (ejemplo: 15-05-2000)"
+      />
+      <input
+        id="exitTimeInput"
+        type="text"
+        placeholder="hora de salida (ejemplo: 20:00)"
+      />
+      <input
+        id="exitDateInput"
+        type="text"
+        placeholder="fecha de salida (ejemplo: 15-05-2000)"
+      />
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="hoursWorkedTag"></p>
+    <script src="./assets/js/seccionA.js"></script>
+    <script src="./assets/js/seccionB.js"></script>
+    <script src="./assets/js/seccionC.js"></script>
   </body>
 </html>
